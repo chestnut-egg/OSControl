@@ -22,7 +22,7 @@ def oss():
         list.append(temp)
     info={}
     info['pslist'] = list
-    return render_template('os.html', info = info)
+    return render_template('ps.html', info = info)
 
 
 
