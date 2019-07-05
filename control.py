@@ -25,6 +25,21 @@ def oss():
     return render_template('ps.html', info = info)
 
 
+@app.route('/log')
+def log():
+    logger.info('-----------log----------')
+    log = cp.get('log_address','tool_log')
+    log_context = os.popen('tail -100 '+str(log))
+
+    list = []
+    for temp in log_context.readlines():
+        logger.info(temp)
+        list.append(temp)
+    info={}
+    info['log_context'] = list
+
+    return render_template('log.html', info = info)
+
 
 
 if __name__ == '__main__':
