@@ -40,6 +40,17 @@ def log():
 
     return render_template('log.html', info = info)
 
+@app.route('/df')
+def df():
+    df = os.popen('df -h')
+    list = []
+    for temp in df.readlines():
+        logger.info(temp)
+        list.append(temp)
+    info={}
+    info['dflist'] = list
+    return render_template('df.html', info = info)
+
 
 
 if __name__ == '__main__':
